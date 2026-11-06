@@ -1,104 +1,106 @@
 ---
-title: "Lección 5 - Personalizar y utilizar una habilidad quality-checks"
-description: "Explora la habilidad quality-checks existente, personaliza el formato de su informe y utilízala para validar el filtrado."
+title: "Lección 5 - Personaliza y usa una aptitud de comprobaciones de calidad"
+description: "Explora la aptitud existente quality-checks, personaliza el formato de su informe y úsala para validar el filtrado."
 authors:
   - geektrainer
 lastUpdated: 2026-09-29
 ---
 
-Escribir código implica mucho más que limitarse a escribirlo. Hemos podido validar manualmente que funciona y hemos utilizado archivos de instrucciones para garantizar que sigue nuestros estándares. Pero ¿qué ocurre con las pruebas, lint y el resto de las tareas de integración continua (CI)?
+Programar no consiste únicamente en escribir código. Ya hemos comprobado manualmente que funciona y hemos usado archivos de instrucciones para garantizar que siga nuestros estándares. Pero ¿qué ocurre con las pruebas, el lint y el resto de la integración continua (CI)?
 
-Para este tipo de tareas, las **habilidades de agente** son la mejor opción. Las habilidades ayudan a Copilot a comprender cómo ejecutar correctamente operaciones como estas.
+Para este tipo de tareas, las **aptitudes de agente** son la mejor opción. Las aptitudes ayudan a Copilot a entender cómo ejecutar operaciones como estas.
 
 En esta lección:
 
-- explorarás la habilidad `quality-checks` existente.
+- explorarás la aptitud existente `quality-checks`.
 - personalizarás el formato de sus resultados.
-- ejecutarás la habilidad y revisarás su salida.
+- ejecutarás la aptitud y revisarás su salida.
 
 ## Escenario
 
-Tailspin Toys utiliza la habilidad `quality-checks` para las pruebas unitarias, lint y las comprobaciones de tipos. El equipo quiere mejorar el informe para facilitar la lectura de los resultados.
+Tailspin Toys usa la aptitud `quality-checks` para ejecutar pruebas unitarias, lint y comprobaciones de tipos. El equipo quiere mejorar el informe para que los resultados sean más fáciles de leer.
 
 ## Instrucciones, scripts y recursos
 
-Las habilidades de agente reúnen instrucciones de tareas reutilizables, scripts ejecutables y recursos de apoyo que un agente carga cuando los necesita. En esencia, son una carpeta con el nombre de la habilidad y un archivo Markdown llamado `SKILL.md`. Este archivo contiene frontmatter con un nombre y una descripción que definen la habilidad, una introducción sobre lo que hace e indicaciones sobre cuándo debe invocarse. La carpeta también puede contener subcarpetas con scripts y otros recursos que utilizará la habilidad.
+Las aptitudes de agente reúnen instrucciones reutilizables para tareas, scripts ejecutables y recursos auxiliares que un agente carga cuando los necesita. En esencia, son una carpeta con el nombre de la aptitud y un archivo Markdown llamado `SKILL.md`. El archivo contiene metadatos de frontmatter con un nombre y una descripción que definen la aptitud, una introducción sobre su función e indicaciones sobre cuándo debe utilizarse. La carpeta también puede incluir subcarpetas con scripts y otros recursos que la aptitud necesite.
 
 > [!NOTE]
-> Una habilidad no necesita carpetas ni archivos adicionales. En nuestro ejemplo, la habilidad ejecutará comandos `npm` para iniciar las pruebas y los linters, así que no necesitamos archivos auxiliares.
+> Las aptitudes no necesitan carpetas ni archivos adicionales. En este ejemplo, la aptitud ejecutará comandos `npm` para realizar las pruebas y el lint, así que no hacen falta archivos auxiliares.
 
-Las habilidades pueden residir en la carpeta `.github/skills` de un proyecto para convertirse en un recurso del repositorio que el resto del equipo pueda compartir y reutilizar, o en la carpeta raíz de Copilot, que suele ser `~/.copilot/skills`.
+Las aptitudes pueden estar en la carpeta `.github/skills` del proyecto para compartirlas y reutilizarlas en el equipo, o en la carpeta raíz de Copilot, que suele ser `~/.copilot/skills`.
 
-## Explorar la habilidad
+## Explora la aptitud
+
+Explora la aptitud `quality-checks` que ha creado el equipo de Tailspin Toys para ejecutar pruebas unitarias, lint y comprobaciones de tipos.
 
 1. Si todavía no tienes abierto un lienzo **Files**, selecciona **+** en el panel de revisión y, después, **File**.
 2. Busca `.github/skills/quality-checks/SKILL.md`.
-3. Lee `name` y `description` al principio. Observa que la descripción ayuda a Copilot a comprender cuándo debe invocar la habilidad.
-4. Lee las instrucciones y observa cómo orientan a Copilot durante el proceso de pruebas y lint.
+3. Lee `name` y `description` al principio. Observa que la descripción ayuda a Copilot a comprender cuándo debe invocar la aptitud.
+4. Lee las instrucciones y fíjate en cómo guían a Copilot durante las pruebas y el lint.
 
-## Ejecutar la habilidad antes de realizar un cambio
+## Ejecuta la aptitud antes de hacer cambios
 
-Las habilidades se pueden invocar directamente mediante un comando con barra diagonal (`/`) o con lenguaje natural. Pidamos a Copilot que ejecute las tres comprobaciones de la habilidad.
+Puedes llamar a las aptitudes directamente mediante un comando con barra diagonal (`/`) o mediante lenguaje natural. Pide a Copilot que ejecute las tres comprobaciones de la aptitud.
 
-1. Selecciona el modo **Interactive** en el menú desplegable para confirmar que Copilot lo utiliza.
-2. Utiliza la indicación siguiente para invocar la habilidad:
+1. Selecciona **Interactive** en el menú desplegable de modo para confirmar que Copilot lo utiliza.
+2. Usa este mensaje para invocar la aptitud:
 
-    ```plaintext
-    Run the quality-checks skill for unit tests, lint, and type checks.
-    ```
+   ```plaintext
+   Ejecuta la aptitud quality-checks para realizar las pruebas unitarias, el lint y las comprobaciones de tipos.
+   ```
 
-3. Observa el informe final.
+3. Lee el informe final.
 
-## Personalizar el informe
+## Personaliza el informe
 
-Queremos un informe mejor que indique qué se ha ejecutado, si ha tenido éxito y qué han comunicado realmente las herramientas. Actualicemos la habilidad para generar ese informe.
+Queremos un informe mejor que indique qué se ha ejecutado, si se ha superado y qué han comunicado realmente las herramientas. Actualiza la aptitud para que genere ese informe.
 
 1. Vuelve al lienzo **Files**.
 2. Si aún no está abierto, abre `.github/skills/quality-checks/SKILL.md`.
-3. Añade la siguiente sección al final del archivo:
+3. Añade esta sección al final del archivo:
 
-    ```markdown
-    ## Results output formatting
+   ```markdown
+   ## Formato de salida de los resultados
 
-    Upon completion, report each command that ran and whether it passed, failed, or was blocked. Include test counts, durations, errors, warnings, and other metrics only when the tool reports them. Identify the next action for any failure or blocker, and never describe a skipped or incomplete check as passed.
-    ```
+   Al terminar, indica cada comando ejecutado y si se ha superado, ha fallado o ha quedado bloqueado. Incluye el recuento de pruebas, la duración, los errores, las advertencias y otras métricas solo si la herramienta los proporciona. Indica el siguiente paso ante cualquier error o bloqueo, y nunca describas una comprobación omitida o incompleta como superada.
+   ```
 
 El archivo se guardará automáticamente.
 
-## Ejecutar la habilidad actualizada
+## Ejecuta la aptitud actualizada
 
-Una vez realizado el cambio, veamos cómo funciona. Utilizaremos exactamente la misma indicación que antes.
+Ahora que has actualizado la aptitud, comprueba el resultado. Usaremos exactamente el mismo mensaje que antes.
 
-1. Selecciona el modo **Interactive** en el menú desplegable para confirmar que Copilot lo utiliza.
-2. Utiliza la indicación siguiente para invocar la habilidad:
+1. Selecciona **Interactive** en el menú desplegable de modo para confirmar que Copilot lo utiliza.
+2. Usa este mensaje para invocar la aptitud:
 
-    ```plaintext
-    Run the quality-checks skill for unit tests, lint, and type checks.
-    ```
+   ```plaintext
+   Ejecuta la aptitud quality-checks para realizar las pruebas unitarias, el lint y las comprobaciones de tipos.
+   ```
 
-3. Observa el informe final.
+3. Lee el informe final.
 
-## Resumen y pasos siguientes
+## Resumen y siguientes pasos
 
-Has personalizado y utilizado una habilidad de agente existente. En esta lección:
+Has personalizado y usado una aptitud de agente existente. En esta lección:
 
-- has explorado la habilidad `quality-checks` para las pruebas unitarias, lint y las comprobaciones de tipos.
+- has explorado la aptitud `quality-checks` para ejecutar pruebas unitarias, lint y comprobaciones de tipos.
 - has personalizado el formato de sus resultados.
-- has ejecutado la habilidad y revisado su salida.
+- has ejecutado la aptitud y revisado su salida.
 
-Este cambio acompañará al filtrado en la PR de la funcionalidad. A continuación, permitirás que Copilot interactúe directamente con el sitio [mediante el servidor MCP de Playwright][next-lesson].
+Este cambio acompañará al filtrado en la PR de la característica. A continuación, permitirás que Copilot interactúe directamente con el sitio [mediante el servidor MCP de Playwright][next-lesson].
 
-## Más ejemplos de habilidades
+## Más ejemplos de aptitudes
 
-Estos ejemplos de la comunidad son referencias, no tareas adicionales. Revisa sus requisitos previos y su comportamiento antes de adoptarlos:
+Estos ejemplos de la comunidad sirven de referencia y no son tareas adicionales. Revisa sus requisitos previos y su comportamiento antes de adoptarlos:
 
 - [Especificación de Agent Skills][skill-spec].
 - [Flujo de contribución: `make-repo-contribution`][contribution-example].
 - [Documentos de requisitos: `prd`][prd-example].
-- [Diagramas y un script de exportación incluido: `drawio`][drawio-example].
+- [Diagramas y script de exportación integrado: `drawio`][drawio-example].
 - [Pruebas de navegador: `webapp-testing`][browser-example].
 
-El ejemplo de contribución original se llama `make-repo-contribution`; las plantillas antiguas de Tailspin utilizaban otro nombre, `make-contribution`. Este taller no depende de ninguna de esas habilidades de contribución.
+El ejemplo original de contribución se llama `make-repo-contribution`; las plantillas antiguas de Tailspin Toys usaban otro nombre, `make-contribution`. Este taller no depende de ninguna de las dos aptitudes de contribución.
 
 [next-lesson]: ../6-mcp-playwright/
 [skill-spec]: https://agentskills.io/specification

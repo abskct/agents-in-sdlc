@@ -13,7 +13,7 @@ Has utilizado la aplicación GitHub Copilot durante un flujo continuo de Tailspi
 - partir de la incidencia de filtrado, definir el enfoque en modo **Plan**, desarrollarlo en modo **Autopilot** y revisarlo en modo **Interactive**.
 - orientar al agente con instrucciones personalizadas y después personalizar la habilidad `quality-checks` existente y utilizarla para ejecutar pruebas unitarias, lint y comprobaciones de tipos.
 - probar el trabajo con el servidor MCP de Playwright en un navegador real.
-- crear y seleccionar un agente personalizado QA para evaluar requisitos, cobertura, resultados de scripts de la habilidad y pruebas de observación del navegador.
+- crear y seleccionar un agente personalizado QA para evaluar requisitos, cobertura, resultados de la aptitud y pruebas obtenidas en el navegador.
 - revisar el cambio completo de filtrado y autorizar **Agent Merge** para la segunda PR.
 - utilizar el lienzo Database Explorer existente y, después, crear y probar un lienzo de clasificación respaldado por el repositorio.
 
